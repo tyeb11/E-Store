@@ -1,4 +1,5 @@
 import passport from "passport";
+import login from "../middleware/login.js";
 
 export default (app) => {
   app.get(
@@ -29,4 +30,11 @@ export default (app) => {
       res.redirect("/api/store/categories");
     }
   );
+  app.get("/api/auth/logout", login, (req, res) => {
+    req.logout();
+    res.redirect("/");
+  });
+  app.get("/api/auth/current-user", login, (req, res) => {
+    res.send(req.user);
+  });
 };

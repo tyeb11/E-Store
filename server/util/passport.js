@@ -6,11 +6,11 @@ import { User } from "../model/user.js";
 
 passport.serializeUser((user, done) => {
   console.log("user : ", user);
-  done(null, user._id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findById({ _id: id });
+  const user = await User.findOne({ id });
   console.log("us : ", user);
   done(null, user);
 });

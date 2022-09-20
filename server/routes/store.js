@@ -6,7 +6,7 @@ export default (app) => {
     //res.send(req.user);
     try {
       const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/categories`
+        `https://api.escuelajs.co/api/v1/categories?offset=${req.query.skip}&limit=10`
       );
       const data = await response.data;
       res.send(data);
@@ -30,7 +30,7 @@ export default (app) => {
   app.get("/api/store/product/:id", login, async (req, res) => {
     try {
       const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/products/${req.params.id}`
+        ` https://api.escuelajs.co/api/v1/products/${req.params.id}`
       );
       const data = await response.data;
       res.send(data);

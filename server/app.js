@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import cookieSession from "cookie-session";
 import passport from "passport";
 import storeRoute from "./routes/store.js";
+import cartRoute from "./routes/cart.js";
 
 import "./model/connect.js";
 import "./model/user.js";
@@ -22,8 +23,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get("/", (req, res) => {
+  res.send(`<h1>Welcome</h1>`);
+});
 authRoute(app);
 storeRoute(app);
+cartRoute(app);
 
 app.listen(process.env.PORT, () => {
   console.log(chalk.green(`Server listening on port ${process.env.PORT}`));
