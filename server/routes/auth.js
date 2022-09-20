@@ -35,6 +35,7 @@ export default (app) => {
     res.redirect("/");
   });
   app.get("/api/auth/current-user", login, (req, res) => {
+    delete req.user.cart;
     res.send(req.user);
   });
 };
