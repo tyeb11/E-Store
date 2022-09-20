@@ -1,2 +1,2 @@
-./server/.env-cmdrc
-./server/node_modules
+server/.env-cmdrc
+server/node_modules
