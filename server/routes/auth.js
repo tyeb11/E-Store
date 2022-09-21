@@ -13,7 +13,8 @@ export default (app) => {
     "/api/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/api/store/categories");
+      //res.redirect("/api/store/categories");
+      res.redirect("/store");
     }
   );
 
@@ -27,7 +28,8 @@ export default (app) => {
     passport.authenticate("github"),
     (req, res) => {
       // Successful authentication, redirect home.
-      res.redirect("/api/store/categories");
+      //res.redirect("/api/store/categories");
+      res.redirect("/store");
     }
   );
   app.get("/api/auth/logout", login, (req, res) => {

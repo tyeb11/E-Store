@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -9,22 +8,26 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
+import { FiMenu } from "react-icons/fi";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "../styles/Button.styles";
-import LoginIcon from "@mui/icons-material/Login";
+import Button from "./Button.component";
+import { FiLogIn } from "react-icons/fi";
+import { connect } from "react-redux";
+import * as actions from "../store/modal/modal.actions";
+import { BUTTON_TYPE_CLASSES } from "./Button.component";
 
 function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const drawerWidth = 240;
-  let login = true;
+
+  console.log(props.current_user);
   let navItems = [];
-  if (login) {
-    navItems = ["Sign in"];
+  if (props.current_user.id) {
+    navItems = ["About", "Cart", "User"];
   } else {
-    navItems = ["Home", "About", "Contact"];
+    navItems = ["Sign in"];
   }
 
   const handleDrawerToggle = () => {
@@ -47,7 +50,7 @@ function Header(props) {
                   sx={{ textAlign: "center" }}
                 >
                   <ListItemText primary={item} />
-                  <LoginIcon />
+                  <FiLogIn />
                 </ListItemButton>
               </ListItem>
             );
@@ -69,6 +72,7 @@ function Header(props) {
 
   const handleSignInModel = () => {
     console.log("Hello");
+    props.toggleSignInModal(!props.sign_in_modal);
   };
 
   return (
@@ -82,7 +86,7 @@ function Header(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+            <FiMenu />
           </IconButton>
           <Typography
             variant="h6"
@@ -95,13 +99,16 @@ function Header(props) {
             {navItems.map((item) => {
               if (item === "Sign in") {
                 return (
-                  <Button onClick={() => handleSignInModel()}>{item}</Button>
+                  <Button
+                    buttonType={BUTTON_TYPE_CLASSES.signIn}
+                    onClick={() => handleSignInModel()}
+                  >
+                    {item}
+                  </Button>
                 );
               } else {
                 return (
-                  <Button key={item} sx={{ color: "#fff" }}>
-                    {item}
-                  </Button>
+                  <Button onClick={() => handleSignInModel()}>{item}</Button>
                 );
               }
             })}
@@ -128,9 +135,15 @@ function Header(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}></Box>
     </Box>
   );
 }
 
-export default Header;
+function mapStateToProps({ modal, user }) {
+  return {
+    sign_in_modal: modal.sign_in_modal,
+    current_user: user.current_user,
+  };
+}
+
+export default connect(mapStateToProps, actions)(Header);

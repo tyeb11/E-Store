@@ -1,11 +1,54 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+
 const stone = "#336b87";
 const mist = "#90afc5";
+const shadow = "#2a3132";
+const autum = "#763626";
 
-const BootstrapButton = styled(Button)({
+export const BaseButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 16,
+  padding: "6px 12px",
+  border: "1px solid",
+  lineHeight: 1.5,
+
+  fontFamily: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    "Roboto",
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(","),
+  "&:hover": {
+    boxShadow: "none",
+  },
+  "&:active": {
+    boxShadow: "none",
+  },
+  "&:focus": {},
+});
+
+export const GoogleSignInButton = styled(BaseButton)({
+  backgroundColor: shadow,
+  color: mist,
+  fontSize: "1.2rem",
+  border: "none",
+
+  "&:hover": {
+    backgroundColor: mist,
+    color: shadow,
+    border: "none",
+  },
+});
+
+export const SignInButton = styled(BaseButton)({
   boxShadow: "none",
   textTransform: "none",
   fontSize: 16,
@@ -41,10 +84,32 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-export default function CustomizedButtons(props) {
-  return (
-    <BootstrapButton variant="contained" onClick={props.onClick} disableRipple>
-      {props.children}
-    </BootstrapButton>
-  );
-}
+export const GithubSignInButton = styled(BaseButton)({
+  backgroundColor: shadow,
+  fontSize: "1.2rem",
+  color: mist,
+  border: "none",
+
+  "&:hover": {
+    backgroundColor: mist,
+    color: shadow,
+    border: "none",
+  },
+});
+export const CancelButton = styled(BaseButton)({
+  backgroundColor: "whitesmoke",
+  color: autum,
+  border: `3px solid ${autum}`,
+  fontSize: "1.2em",
+  fontWeight: "bold",
+  "&:hover": {
+    backgroundColor: autum,
+    color: "whitesmoke",
+  },
+});
+export const AddItemButton = styled(BaseButton)({});
+export const IncItemButton = styled(BaseButton)({});
+export const DecItemButton = styled(BaseButton)({});
+export const CheckoutButton = styled(BaseButton)({});
+export const InvertedButton = styled(BaseButton)({});
+export const LoadingSpinner = styled(BaseButton)({});
