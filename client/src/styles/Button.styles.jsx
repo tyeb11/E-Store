@@ -112,4 +112,14 @@ export const IncItemButton = styled(BaseButton)({});
 export const DecItemButton = styled(BaseButton)({});
 export const CheckoutButton = styled(BaseButton)({});
 export const InvertedButton = styled(BaseButton)({});
+export const HeaderButton = styled(BaseButton)({
+  backgroundColor: shadow,
+  border: "none",
+  color: "whitesmoke",
+  height: "60px",
+  "&:hover": {
+    color: stone,
+    backgroundColor: shadow,
+  },
+});
 export const LoadingSpinner = styled(BaseButton)({});

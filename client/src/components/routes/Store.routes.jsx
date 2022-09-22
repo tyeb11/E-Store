@@ -1,10 +1,12 @@
-import { Box, Container } from "@mui/system";
-
+import { Route, Routes } from "react-router-dom";
+import Categories from "../Categories.component.jsx";
+import Products from "../Products.component.jsx";
 function Store() {
   return (
-    <Box component="main" sx={{ marginTop: "80px" }}>
-      Hello
-    </Box>
+    <Routes>
+      <Route index element={<Categories />} />
+      <Route path=":category" element={<Products />} />
+    </Routes>
   );
 }
 

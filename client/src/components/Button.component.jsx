@@ -11,6 +11,7 @@ import {
   CheckoutButton,
   InvertedButton,
   LoadingSpinner,
+  HeaderButton
 } from "../styles/Button.styles.jsx";
 
 export const BUTTON_TYPE_CLASSES = {
@@ -24,6 +25,7 @@ export const BUTTON_TYPE_CLASSES = {
   dec: "dec-item",
   checkout: "checkout",
   inverted: "inverted",
+  header:'header'
 };
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
   ({
@@ -37,6 +39,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
     [BUTTON_TYPE_CLASSES.dec]: DecItemButton,
     [BUTTON_TYPE_CLASSES.checkout]: CheckoutButton,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
+    [BUTTON_TYPE_CLASSES.header]: HeaderButton,
   }[buttonType]);
 const Button = ({ children, buttonType, isLoading, ...otherProps }) => {
   const CustomButton = getButton(buttonType);

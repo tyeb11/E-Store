@@ -16,8 +16,10 @@ import { FiLogIn } from "react-icons/fi";
 import { connect } from "react-redux";
 import * as actions from "../store/modal/modal.actions";
 import { BUTTON_TYPE_CLASSES } from "./Button.component";
+import { useNavigate } from "react-router-dom";
 
 function Header(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const drawerWidth = 240;
@@ -36,7 +38,11 @@ function Header(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography
+        variant="h6"
+        sx={{ my: 2, cursor: "pointer" }}
+        onClick={() => handleStore()}
+      >
         E-Store
       </Typography>
       <Divider />
@@ -54,14 +60,40 @@ function Header(props) {
                 </ListItemButton>
               </ListItem>
             );
+          } else if (item === "About") {
+            return (
+              <ListItem key={item} disablePadding>
+                <ListItemButton
+                  onClick={() => handleAbout()}
+                  sx={{ textAlign: "center" }}
+                >
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              </ListItem>
+            );
+          } else if (item === "Cart") {
+            return (
+              <ListItem key={item} disablePadding>
+                <ListItemButton
+                  onClick={() => handleAbout()}
+                  sx={{ textAlign: "center" }}
+                >
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              </ListItem>
+            );
+          } else if (item === "User") {
+            return (
+              <ListItem key={item} disablePadding>
+                <ListItemButton
+                  onClick={() => handleAbout()}
+                  sx={{ textAlign: "center" }}
+                >
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              </ListItem>
+            );
           }
-          return (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          );
         })}
       </List>
     </Box>
@@ -73,6 +105,12 @@ function Header(props) {
   const handleSignInModel = () => {
     console.log("Hello");
     props.toggleSignInModal(!props.sign_in_modal);
+  };
+  const handleAbout = () => {
+    navigate("/about");
+  };
+  const handleStore = () => {
+    navigate("/store");
   };
 
   return (
@@ -89,9 +127,14 @@ function Header(props) {
             <FiMenu />
           </IconButton>
           <Typography
+            onClick={() => handleStore()}
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              cursor: "pointer",
+              display: { xs: "none", sm: "block" },
+            }}
           >
             E-Store
           </Typography>
@@ -106,9 +149,32 @@ function Header(props) {
                     {item}
                   </Button>
                 );
-              } else {
+              } else if (item === "About") {
                 return (
-                  <Button onClick={() => handleSignInModel()}>{item}</Button>
+                  <Button
+                    buttonType={BUTTON_TYPE_CLASSES.header}
+                    onClick={() => handleAbout()}
+                  >
+                    {item}
+                  </Button>
+                );
+              } else if (item === "Cart") {
+                return (
+                  <Button
+                    buttonType={BUTTON_TYPE_CLASSES.header}
+                    onClick={() => handleAbout()}
+                  >
+                    {item}
+                  </Button>
+                );
+              } else if (item === "User") {
+                return (
+                  <Button
+                    buttonType={BUTTON_TYPE_CLASSES.header}
+                    onClick={() => handleAbout()}
+                  >
+                    {item}
+                  </Button>
                 );
               }
             })}

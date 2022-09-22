@@ -6,6 +6,7 @@ import Store from "./routes/Store.routes";
 import Modal from "./modals/SignInModal.modal";
 import { useEffect } from "react";
 import * as actions from "../store/user/user.actions";
+import About from "./routes/About.routes";
 
 const App = ({ sign_in_modal, cart_modal, getUser, current_user }) => {
   useEffect(() => {
@@ -18,7 +19,8 @@ const App = ({ sign_in_modal, cart_modal, getUser, current_user }) => {
         <Header />
         <Routes>
           <Route path="/" index element={<Home />} />
-          <Route path="/store" index element={<Store />} />
+          <Route path="/store/*" index element={<Store />} />
+          <Route path="/about" index element={<About />} />
         </Routes>
         {sign_in_modal && <Modal />}
         {cart_modal && <Modal />}
