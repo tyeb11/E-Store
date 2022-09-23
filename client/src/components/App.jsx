@@ -12,7 +12,6 @@ const App = ({ sign_in_modal, cart_modal, getUser, current_user }) => {
   useEffect(() => {
     getUser();
   }, []);
-  console.log(current_user);
   return (
     <>
       <BrowserRouter>

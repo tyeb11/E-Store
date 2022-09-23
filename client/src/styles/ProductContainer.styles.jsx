@@ -34,7 +34,7 @@ export const Body = styled.div`
     font-weight: bold;
     padding: 5px;
     border: 2px solid whitesmoke;
-    border-bottom: none;
+    border-bottom: 2px solid whitesmoke;
     background-color: ${shadow};
     color: whitesmoke;
   }

@@ -24,7 +24,6 @@ function Header(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const drawerWidth = 240;
 
-  console.log(props.current_user);
   let navItems = [];
   if (props.current_user.id) {
     navItems = ["About", "Cart", "User"];
