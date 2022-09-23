@@ -3,12 +3,20 @@ import Header from "./Header.component";
 import { connect } from "react-redux";
 import Home from "./routes/Home.routes";
 import Store from "./routes/Store.routes";
-import Modal from "./modals/SignInModal.modal";
+import SignInModal from "./modals/SignInModal.modal";
+import CartModal from "./modals/CartModal.modal";
+import UserModal from "./modals/UserModal.modal";
 import { useEffect } from "react";
 import * as actions from "../store/user/user.actions";
 import About from "./routes/About.routes";
 
-const App = ({ sign_in_modal, cart_modal, getUser, current_user }) => {
+const App = ({
+  sign_in_modal,
+  cart_modal,
+  user_modal,
+  getUser,
+  current_user,
+}) => {
   useEffect(() => {
     getUser();
   }, []);
@@ -21,8 +29,9 @@ const App = ({ sign_in_modal, cart_modal, getUser, current_user }) => {
           <Route path="/store/*" index element={<Store />} />
           <Route path="/about" index element={<About />} />
         </Routes>
-        {sign_in_modal && <Modal />}
-        {cart_modal && <Modal />}
+        {sign_in_modal && <SignInModal />}
+        {cart_modal && <CartModal />}
+        {user_modal && <UserModal />}
       </BrowserRouter>
     </>
   );
@@ -32,6 +41,7 @@ function mapStateToProps({ modal, user }) {
   return {
     sign_in_modal: modal.sign_in_modal,
     cart_modal: modal.cart_modal,
+    user_modal: modal.user_modal,
     current_user: user.current_user,
   };
 }

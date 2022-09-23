@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import * as actions from "../../store/modal/modal.actions";
+import * as action from "../../store/user/user.actions";
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
@@ -16,13 +17,17 @@ import {
   buttonContainer,
   headingContainer,
 } from "../../styles/SignInModal.styles";
+import LogoutIcon from "@mui/icons-material/Logout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function TransitionsModal(props) {
-  const handleGoogle = () => {
-    window.location = "/api/auth/google";
-  };
-  const handleGithub = () => {
-    window.location = "/api/auth/github";
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    await axios.post("/api/auth/logout");
+    navigate("/");
+    props.removeUser();
+    props.toggleUserModal(!props.user_modal);
   };
   const handleModal = () => {
     if (props.sign_in_modal) {
@@ -33,6 +38,7 @@ function TransitionsModal(props) {
       props.toggleUserModal(!props.user_modal);
     }
   };
+  console.log("user", props.username);
 
   return (
     <div>
@@ -51,33 +57,26 @@ function TransitionsModal(props) {
           <Box sx={style}>
             <Box sx={headingContainer}>
               <Typography component="div" variant="h3">
-                Sign in
+                {props.username}
               </Typography>
             </Box>
             <Box sx={buttonContainer}>
               <Button
-                startIcon={<BsGoogle />}
-                buttonType={BUTTON_TYPE_CLASSES.google}
-                onClick={() => handleGoogle()}
+                startIcon={<LogoutIcon />}
+                buttonType={BUTTON_TYPE_CLASSES.logout}
+                onClick={() => handleLogout()}
               >
-                Google
-              </Button>
-              <Button
-                startIcon={<BsGithub />}
-                buttonType={BUTTON_TYPE_CLASSES.github}
-                onClick={() => handleGithub()}
-              >
-                Github
+                Sign out
               </Button>
             </Box>
             <Box sx={{ marginBottom: "10px", textAlign: "center" }}>
               <Typography component="div" variant="h6">
-                Sign in to enter our store
+                Stay sign in to keep shopping
               </Typography>
             </Box>
             <Box sx={cancelContainer}>
               <Button
-                buttonType={BUTTON_TYPE_CLASSES.cancel}
+                buttonType={BUTTON_TYPE_CLASSES.invcancel}
                 onClick={() => handleModal()}
               >
                 Cancel
@@ -90,12 +89,15 @@ function TransitionsModal(props) {
   );
 }
 
-function mapStateToProps({ modal }) {
+function mapStateToProps({ modal, user }) {
   return {
     sign_in_modal: modal.sign_in_modal,
     cart_modal: modal.cart_modal,
     user_modal: modal.user_modal,
+    username: user.current_user.name,
   };
 }
 
-export default connect(mapStateToProps, actions)(TransitionsModal);
+export default connect(mapStateToProps, { ...actions, ...action })(
+  TransitionsModal
+);

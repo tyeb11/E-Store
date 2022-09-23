@@ -32,8 +32,9 @@ export default (app) => {
       res.redirect("/store");
     }
   );
-  app.get("/api/auth/logout", login, (req, res) => {
+  app.post("/api/auth/logout", login, (req, res) => {
     req.logout();
+
     res.redirect("/");
   });
   app.get("/api/auth/current-user", login, (req, res) => {

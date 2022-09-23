@@ -51,30 +51,11 @@ function TransitionsModal(props) {
           <Box sx={style}>
             <Box sx={headingContainer}>
               <Typography component="div" variant="h3">
-                Sign in
+                Cart
               </Typography>
             </Box>
-            <Box sx={buttonContainer}>
-              <Button
-                startIcon={<BsGoogle />}
-                buttonType={BUTTON_TYPE_CLASSES.google}
-                onClick={() => handleGoogle()}
-              >
-                Google
-              </Button>
-              <Button
-                startIcon={<BsGithub />}
-                buttonType={BUTTON_TYPE_CLASSES.github}
-                onClick={() => handleGithub()}
-              >
-                Github
-              </Button>
-            </Box>
-            <Box sx={{ marginBottom: "10px", textAlign: "center" }}>
-              <Typography component="div" variant="h6">
-                Sign in to enter our store
-              </Typography>
-            </Box>
+            <Box sx={buttonContainer}></Box>
+
             <Box sx={cancelContainer}>
               <Button
                 buttonType={BUTTON_TYPE_CLASSES.cancel}

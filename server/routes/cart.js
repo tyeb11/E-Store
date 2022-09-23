@@ -5,12 +5,14 @@ import { User } from "../model/user.js";
 export default (app) => {
   app.post("/api/add-cart-item", login, async (req, res) => {
     try {
-      const { cartID } = req.body;
+      const cartID = req.body.cartID;
+      console.log("cartID ", cartID);
 
       const response = await axios.get(
         `https://api.escuelajs.co/api/v1/products/${cartID}`
       );
       const data = await response.data;
+
       const id = data.id;
       const name = data.title;
 
@@ -34,7 +36,7 @@ export default (app) => {
         req.user.cart = cart.cart;
         return res.send(cart.cart);
       } else {
-        await User.findByIdAndUpdate(
+        const user = await User.findByIdAndUpdate(
           { _id: req.user._id },
           {
             $push: {
@@ -46,9 +48,11 @@ export default (app) => {
               },
             },
           }
-        ).save();
+        );
+        await user.save();
         cart = await User.findOne({ _id: req.user._id }, { cart: 1, _id: 0 });
         req.user.cart = cart.cart;
+        console.log("cart", cart.cart);
         return res.send(cart.cart);
       }
     } catch (e) {
@@ -65,12 +69,12 @@ export default (app) => {
   });
   app.delete("/api/remove-cart-item", login, async (req, res) => {
     try {
-      const { cartID } = req.body;
-
+      console.log("cart ,,,", req.body.cartID);
+      const cartID = req.body.cartID;
       let cart = await User.findOne({ _id: req.user._id }, { cart: 1, _id: 0 });
-      let existingItem = cart.cart.filter((item) => item.itemID === cartID);
+      let existingItem = cart.cart.filter((item) => item.itemID == cartID);
       if (existingItem[0].itemCount <= 1) {
-        User.updateOne(
+        await User.updateOne(
           {
             _id: req.user._id,
           },
@@ -80,7 +84,7 @@ export default (app) => {
         req.user.cart = cart.cart;
         return res.send(cart.cart);
       } else {
-        User.updateOne(
+        await User.updateOne(
           {
             _id: req.user._id,
             cart: {
@@ -96,7 +100,7 @@ export default (app) => {
         return res.send(cart.cart);
       }
     } catch (e) {
-      return res.status(404).send({ error: "product not available in store" });
+      return res.status(200).send({ error: "product not available in store" });
     }
   });
   app.delete("/api/cart", login, async (req, res) => {

@@ -17,6 +17,8 @@ import { connect } from "react-redux";
 import * as actions from "../store/modal/modal.actions";
 import { BUTTON_TYPE_CLASSES } from "./Button.component";
 import { useNavigate } from "react-router-dom";
+import Cart from "./Cart.component";
+import Avatar from "./Avatar.componenet";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -51,7 +53,7 @@ function Header(props) {
             return (
               <ListItem key={item} disablePadding>
                 <ListItemButton
-                  onClick={() => handleSignInModel()}
+                  onClick={() => handleSignInModal()}
                   sx={{ textAlign: "center" }}
                 >
                   <ListItemText primary={item} />
@@ -101,9 +103,17 @@ function Header(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const handleSignInModel = () => {
+  const handleSignInModal = () => {
     console.log("Hello");
     props.toggleSignInModal(!props.sign_in_modal);
+  };
+  const handleCartModal = () => {
+    console.log("Hello");
+    props.toggleCartModal(!props.cart_modal);
+  };
+  const handleUserModal = () => {
+    console.log("Hello");
+    props.toggleUserModal(!props.user_modal);
   };
   const handleAbout = () => {
     navigate("/about");
@@ -143,7 +153,7 @@ function Header(props) {
                 return (
                   <Button
                     buttonType={BUTTON_TYPE_CLASSES.signIn}
-                    onClick={() => handleSignInModel()}
+                    onClick={() => handleSignInModal()}
                   >
                     {item}
                   </Button>
@@ -159,21 +169,18 @@ function Header(props) {
                 );
               } else if (item === "Cart") {
                 return (
-                  <Button
-                    buttonType={BUTTON_TYPE_CLASSES.header}
-                    onClick={() => handleAbout()}
-                  >
-                    {item}
-                  </Button>
+                  <IconButton onClick={() => handleCartModal()}>
+                    <Cart />
+                  </IconButton>
                 );
               } else if (item === "User") {
                 return (
-                  <Button
-                    buttonType={BUTTON_TYPE_CLASSES.header}
-                    onClick={() => handleAbout()}
+                  <IconButton
+                    onClick={() => handleUserModal()}
+                    sx={{ p: 0, marginLeft: "30px" }}
                   >
-                    {item}
-                  </Button>
+                    <Avatar />
+                  </IconButton>
                 );
               }
             })}
@@ -207,6 +214,8 @@ function Header(props) {
 function mapStateToProps({ modal, user }) {
   return {
     sign_in_modal: modal.sign_in_modal,
+    cart_modal: modal.cart_modal,
+    user_modal: modal.user_modal,
     current_user: user.current_user,
   };
 }

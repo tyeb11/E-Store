@@ -3,6 +3,7 @@ import { MODAL_ACTION_TYPES } from "./modal.types";
 const INITIAL_STATE = {
   sign_in_modal: false,
   cart_modal: false,
+  user_modal: false,
 };
 
 export const modalReducer = (state = INITIAL_STATE, action) => {
@@ -13,6 +14,9 @@ export const modalReducer = (state = INITIAL_STATE, action) => {
       break;
     case MODAL_ACTION_TYPES.TOGGEL_CART_MODAL:
       return { ...state, cart_modal: payload };
+      break;
+    case MODAL_ACTION_TYPES.TOGGEL_USER_MODAL:
+      return { ...state, user_modal: payload };
       break;
     default:
       return state;

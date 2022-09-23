@@ -112,6 +112,27 @@ export const IncItemButton = styled(BaseButton)({});
 export const DecItemButton = styled(BaseButton)({});
 export const CheckoutButton = styled(BaseButton)({});
 export const InvertedButton = styled(BaseButton)({});
+export const InvCancelButton = styled(BaseButton)({
+  backgroundColor: "whitesmoke",
+  color: shadow,
+  border: `3px solid ${shadow}`,
+  fontSize: "1.2em",
+  fontWeight: "bold",
+  "&:hover": {
+    backgroundColor: shadow,
+    color: "whitesmoke",
+  },
+});
+export const LogoutButton = styled(BaseButton)({
+  backgroundColor: shadow,
+  fontSize: "1.2rem",
+  color: mist,
+  border: "none",
+  "&:hover": {
+    color: mist,
+    backgroundColor: autum,
+  },
+});
 export const HeaderButton = styled(BaseButton)({
   backgroundColor: shadow,
   border: "none",

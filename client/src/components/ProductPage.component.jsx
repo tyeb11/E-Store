@@ -9,8 +9,10 @@ import Typography from "@mui/material/Typography";
 import Button from "./Button.component";
 import Div from "@mui/material/Divider";
 import Loading from "./Loading.component";
+import * as actions from "../store/cart/cart.actions";
+import { connect } from "react-redux";
 
-function ProductPage() {
+function ProductPage({ addCartItem, removeCartItem, cartItems }) {
   const [data, setData] = useState({});
   const { id } = useParams();
   useEffect(() => {
@@ -23,6 +25,11 @@ function ProductPage() {
   }, []);
   const handleAddToCart = () => {
     console.log("add to cart");
+    addCartItem(id);
+  };
+  const handleRemoveToCart = () => {
+    console.log("add to cart");
+    removeCartItem(id);
   };
   return (
     <>
@@ -63,4 +70,8 @@ function ProductPage() {
   );
 }
 
-export default ProductPage;
+function mapStateToProps({ cart }) {
+  return { cartItems: cart.cartItems };
+}
+
+export default connect(mapStateToProps, actions)(ProductPage);
