@@ -108,8 +108,16 @@ export const CancelButton = styled(BaseButton)({
   },
 });
 export const AddItemButton = styled(BaseButton)({});
-export const IncItemButton = styled(BaseButton)({});
-export const DecItemButton = styled(BaseButton)({});
+export const IncItemButton = styled(BaseButton)({
+  borderRadius: "100%",
+  backgroundColor: shadow,
+  color: mist,
+  border: "none",
+});
+export const DecItemButton = styled(BaseButton)({
+  borderRadius: "100%",
+  backgroundColor: shadow,
+});
 export const CheckoutButton = styled(BaseButton)({});
 export const InvertedButton = styled(BaseButton)({});
 export const InvCancelButton = styled(BaseButton)({

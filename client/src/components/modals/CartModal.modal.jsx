@@ -15,7 +15,9 @@ import {
   cancelContainer,
   buttonContainer,
   headingContainer,
+  cartContainer,
 } from "../../styles/SignInModal.styles";
+import CartItemList from "../CartItemsList.component";
 
 function TransitionsModal(props) {
   const handleGoogle = () => {
@@ -54,7 +56,9 @@ function TransitionsModal(props) {
                 Cart
               </Typography>
             </Box>
-            <Box sx={buttonContainer}></Box>
+            <Box sx={cartContainer}>
+              <CartItemList />
+            </Box>
 
             <Box sx={cancelContainer}>
               <Button

@@ -11,6 +11,7 @@ import Div from "@mui/material/Divider";
 import Loading from "./Loading.component";
 import * as actions from "../store/cart/cart.actions";
 import { connect } from "react-redux";
+import AddIcon from "@mui/icons-material/Add";
 
 function ProductPage({ addCartItem, removeCartItem, cartItems }) {
   const [data, setData] = useState({});
@@ -57,7 +58,9 @@ function ProductPage({ addCartItem, removeCartItem, cartItems }) {
               <Typography variant="subtitle" component="h2">
                 ${data.price}
               </Typography>
-              <Button onClick={() => handleAddToCart()}>+ Cart</Button>
+              <Button startIcon={<AddIcon />} onClick={() => handleAddToCart()}>
+                Cart
+              </Button>
             </Stack>
             <Div></Div>
             <Typography variant="body1" gutterBottom>

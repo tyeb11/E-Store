@@ -76,7 +76,7 @@ function Header(props) {
             return (
               <ListItem key={item} disablePadding>
                 <ListItemButton
-                  onClick={() => handleAbout()}
+                  onClick={() => handleCartModal()}
                   sx={{ textAlign: "center" }}
                 >
                   <ListItemText primary={item} />
@@ -87,7 +87,7 @@ function Header(props) {
             return (
               <ListItem key={item} disablePadding>
                 <ListItemButton
-                  onClick={() => handleAbout()}
+                  onClick={() => handleUserModal()}
                   sx={{ textAlign: "center" }}
                 >
                   <ListItemText primary={item} />

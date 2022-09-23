@@ -39,3 +39,13 @@ export const headingContainer = {
   textAlign: "center",
   backgroundColor: "whitesmoke",
 };
+
+export const cartContainer = {
+  color: "#2a3132",
+  padding: "10px",
+  overflowY: "scroll",
+  width: "100%",
+  height: "60vh",
+  textAlign: "center",
+  backgroundColor: "whitesmoke",
+};
