@@ -5,5 +5,6 @@ export const cartSchema = new Schema({
   itemID: Number,
   itemName: String,
   itemCount: Number,
+  itemPrice: Number,
   itemDate: Date,
 });

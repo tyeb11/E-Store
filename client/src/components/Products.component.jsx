@@ -21,7 +21,7 @@ function Products() {
   }, []);
 
   return (
-    <Box sx={{ marginTop: "80px", border: "1px solid black" }}>
+    <Box sx={{ marginTop: "80px" }}>
       {products.length === 0 ? (
         <Loading />
       ) : (

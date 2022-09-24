@@ -44,6 +44,7 @@ export default (app) => {
                 itemID: id,
                 itemName: name,
                 itemCount: 1,
+                itemPrice: data.price,
                 itemDate: Date.now(),
               },
             },

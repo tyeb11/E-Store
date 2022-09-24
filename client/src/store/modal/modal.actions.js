@@ -12,3 +12,7 @@ export const toggleUserModal = (data) => ({
   type: MODAL_ACTION_TYPES.TOGGEL_USER_MODAL,
   payload: data,
 });
+export const toggleSuccessModal = (data) => ({
+  type: MODAL_ACTION_TYPES.TOGGEL_SUCCESS_MODAL,
+  payload: data,
+});

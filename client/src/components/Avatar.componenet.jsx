@@ -34,7 +34,6 @@ function stringAvatar(name) {
 }
 
 function BackgroundLetterAvatar({ username }) {
-  console.log(username);
   return <Avatar {...stringAvatar(username)} />;
 }
 

@@ -12,6 +12,7 @@ import Loading from "./Loading.component";
 import * as actions from "../store/cart/cart.actions";
 import { connect } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
 function ProductPage({ addCartItem, removeCartItem, cartItems }) {
   const [data, setData] = useState({});
@@ -56,7 +57,8 @@ function ProductPage({ addCartItem, removeCartItem, cartItems }) {
               alignItems="center"
             >
               <Typography variant="subtitle" component="h2">
-                ${data.price}
+                <CurrencyRupeeIcon />
+                {data.price}
               </Typography>
               <Button startIcon={<AddIcon />} onClick={() => handleAddToCart()}>
                 Cart

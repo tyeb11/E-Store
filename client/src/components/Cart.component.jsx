@@ -37,9 +37,10 @@ function Cart({ cartItems, getCartItems }) {
     if (count.length > 0) {
       count = count.reduce((num1, num2) => num1 + num2);
       setCartItemCount(count);
+    } else {
+      setCartItemCount(0);
     }
   }, [cartItems]);
-  console.log(cartItemsCount);
   return (
     <IconButton aria-label="cart">
       <StyledBadge

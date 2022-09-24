@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   sign_in_modal: false,
   cart_modal: false,
   user_modal: false,
+  success_modal: false,
 };
 
 export const modalReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,10 @@ export const modalReducer = (state = INITIAL_STATE, action) => {
     case MODAL_ACTION_TYPES.TOGGEL_USER_MODAL:
       return { ...state, user_modal: payload };
       break;
+    case MODAL_ACTION_TYPES.TOGGEL_SUCCESS_MODAL:
+      return { ...state, success_modal: payload };
+      break;
+
     default:
       return state;
       break;

@@ -9,6 +9,7 @@ import UserModal from "./modals/UserModal.modal";
 import { useEffect } from "react";
 import * as actions from "../store/user/user.actions";
 import About from "./routes/About.routes";
+import SuccessModal from "./modals/SuccessModal.modal";
 
 const App = ({
   sign_in_modal,
@@ -16,6 +17,7 @@ const App = ({
   user_modal,
   getUser,
   current_user,
+  success_modal,
 }) => {
   useEffect(() => {
     getUser();
@@ -32,6 +34,7 @@ const App = ({
         {sign_in_modal && <SignInModal />}
         {cart_modal && <CartModal />}
         {user_modal && <UserModal />}
+        {success_modal && <SuccessModal />}
       </BrowserRouter>
     </>
   );
@@ -43,6 +46,7 @@ function mapStateToProps({ modal, user }) {
     cart_modal: modal.cart_modal,
     user_modal: modal.user_modal,
     current_user: user.current_user,
+    success_modal: modal.success_modal,
   };
 }
 

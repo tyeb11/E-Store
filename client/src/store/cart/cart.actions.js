@@ -3,7 +3,6 @@ import { ADD_CART_ITEM, REMOVE_CART_ITEM, GET_CART_ITEM } from "./cart.types";
 
 export const getCartItems = () => async (dispatch) => {
   const res = await axios.get("/api/cart");
-  console.log("getcart", res.data);
   dispatch({ type: GET_CART_ITEM, payload: res.data });
 };
 
@@ -18,3 +17,5 @@ export const removeCartItem = (id) => async (dispatch) => {
 
   dispatch(getCartItems());
 };
+
+

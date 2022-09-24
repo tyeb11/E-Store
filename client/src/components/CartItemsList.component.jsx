@@ -5,6 +5,8 @@ import CartItems from "./CartItems.component";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import * as actions from "../store/cart/cart.actions";
+import Button from "./Button.component";
+import Stack from "@mui/material/Stack";
 
 function CartItemsList({ cart }) {
   const [cartItems, setCartItems] = useState(cart);

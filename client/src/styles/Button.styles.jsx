@@ -118,7 +118,42 @@ export const DecItemButton = styled(BaseButton)({
   borderRadius: "100%",
   backgroundColor: shadow,
 });
-export const CheckoutButton = styled(BaseButton)({});
+export const CheckoutButton = styled(BaseButton)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 16,
+  padding: "6px 12px",
+  border: `2px solid`,
+  lineHeight: 1.5,
+  backgroundColor: stone,
+  borderColor: shadow,
+  fontFamily: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    "Roboto",
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(","),
+  "&:hover": {
+    backgroundColor: shadow,
+    borderColor: stone,
+    color: mist,
+    boxShadow: "none",
+  },
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: stone,
+    borderColor: shadow,
+  },
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba( 51 ,107 ,135,.5)",
+  },
+});
 export const InvertedButton = styled(BaseButton)({});
 export const InvCancelButton = styled(BaseButton)({
   backgroundColor: "whitesmoke",

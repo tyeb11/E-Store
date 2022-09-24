@@ -45,7 +45,7 @@ export const cartContainer = {
   padding: "10px",
   overflowY: "scroll",
   width: "100%",
-  height: "60vh",
+  maxHeight: "30vh",
   textAlign: "center",
   backgroundColor: "whitesmoke",
 };

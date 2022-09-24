@@ -1,6 +1,9 @@
 import Button, { BUTTON_TYPE_CLASSES } from "./Button.component";
 import * as actions from "../store/cart/cart.actions";
 import { connect } from "react-redux";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -17,32 +20,30 @@ function CartItems({ item, removeCartItem, addCartItem }) {
     console.log("add to cart");
     removeCartItem(item.itemID);
   };
-  console.log("item", item);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        border: "1px solid black",
-        height: "50px",
-      }}
-    >
-      <div style={{ flexGrow: "3" }}>{item.itemName}</div>
-
-      <div style={{ flexGrow: "2" }}>
+    <Stack direction="row" spacing={5} justifyContent="space-between">
+      <Typography variant="h6" component="h2" sx={{ width: "270px" }}>
+        {item.itemName}
+      </Typography>
+      <Stack
+        direction="row"
+        spacing={1}
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <RemoveCircleOutlineIcon
-          sx={{ "&:hover": { color: "#763626" } }}
           onClick={() => handleRemoveToCart()}
+          sx={{ "&:hover": { color: "#763626" } }}
         />
-        {item.itemCount}
-
+        <Typography variant="h6" component="h2">
+          {item.itemCount}
+        </Typography>
         <AddCircleOutlineIcon
-          sx={{ "&:hover": { color: "#336b87" } }}
           onClick={() => handleAddToCart()}
+          sx={{ "&:hover": { color: "#336b87" } }}
         />
-      </div>
-    </div>
+      </Stack>
+    </Stack>
   );
 }
 

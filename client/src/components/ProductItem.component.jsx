@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BackgroudImage, ImageContainer } from "../styles/ImageConainer.styles";
 import { Body, Title, Price } from "../styles/ProductContainer.styles";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 function ProductItem({ id, title, price, images }) {
   const navigate = useNavigate();
   const addToCart = () => {};
@@ -12,7 +13,8 @@ function ProductItem({ id, title, price, images }) {
       <BackgroudImage imageUrl={images[0]} />
       <Body>
         <Title>{title}</Title>
-        <Price>${price}</Price>
+
+        <Price>&#8377; {price}</Price>
         {/* <AddCart onClick={() => addToCart()}></AddCart> */}
       </Body>
     </ImageContainer>
